@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.2-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+  backend:
+    build:
+      context: ./
+      dockerfile: ./docker/rails/Dockerfile
+    ports:
+      - 3000:3000
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - ./backend:/var/www
+      - bundle:/usr/local/bundle
+      - public-data:/var/www/public
+      - tmp-data:/var/www/tmp
+      - log-data:/var/www/log
+    depends_on:
+      - db
+  # frontend:
+  #   build:
+  #     context: ./
+  #     dockerfile: ./docker/node/Dockerfile
+  #   command: npm run dev
+  #   ports:
+  #     - '8080:8080'
+  #     - '8888:8888'
+  #   volumes:
+  #     - ./frontend:/var/www
+      # - ./backend/public:/var/www/public
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - public-data:/var/www/public
+      - tmp-data:/var/www/tmp
+    #   - ./backend/public:/var/www/public
+    #   - ./frontend/public:/var/www/public
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+
+volumes:
+  bundle:
+  db-data:
+  public-data:
+  tmp-data:
+  log-data:
