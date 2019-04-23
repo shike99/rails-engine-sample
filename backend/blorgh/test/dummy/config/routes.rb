@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Blorgh::Engine, at: '/blog'
+  mount Blorgh::Engine => "/blorgh"
 end
