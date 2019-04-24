@@ -7,10 +7,6 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -21,11 +17,19 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
-/yarn-error.log
-
 /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+application.env
+
+admin/db/
+admin/spec/admin/db/
+admin/bundle/
+admin/log/*.log
+admin/pkg/
+admin/spec/admin/log/*.log
+admin/spec/admin/storage/
+admin/spec/admin/tmp/
