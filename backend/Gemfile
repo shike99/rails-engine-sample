@@ -14,6 +14,7 @@ gem 'devise_token_auth'
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "pundit"
+gem "rack-cors"
 
 gem "jbuilder", "~> 2.5"
 gem "slim-rails"

@@ -37,6 +37,10 @@ ActiveRecord::Schema.define(version: 2019_04_24_085654) do
     t.datetime "reset_password_sent_at"
     t.boolean "allow_password_change", default: false
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
