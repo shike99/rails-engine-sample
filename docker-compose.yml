@@ -22,17 +22,16 @@ services:
       - log-data:/var/www/log
     depends_on:
       - db
-  # frontend:
-  #   build:
-  #     context: ./
-  #     dockerfile: ./docker/node/Dockerfile
-  #   command: npm run dev
-  #   ports:
-  #     - '8080:8080'
-  #     - '8888:8888'
-  #   volumes:
-  #     - ./frontend:/var/www
-      # - ./backend/public:/var/www/public
+  frontend:
+    build:
+      context: ./
+      dockerfile: ./docker/node/Dockerfile
+    command: yarn run serve
+    ports:
+      - 8080:8080
+      - 8888:8888
+    volumes:
+      - ./frontend:/var/www
   nginx:
     build:
       context: ./
@@ -40,8 +39,6 @@ services:
     volumes:
       - public-data:/var/www/public
       - tmp-data:/var/www/tmp
-    #   - ./backend/public:/var/www/public
-    #   - ./frontend/public:/var/www/public
     ports:
       - 80:80
     depends_on:

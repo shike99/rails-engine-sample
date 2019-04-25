@@ -11,6 +11,7 @@ RUN mkdir -p $APP_HOME && mkdir -p $APP_HOME/tmp/sockets
 WORKDIR $APP_HOME
 
 ADD ./backend/Gemfile* $APP_HOME/
+ADD ./backend/admin/ $APP_HOME/admin/
 RUN bundle install
 
 ADD ./backend $APP_HOME/
