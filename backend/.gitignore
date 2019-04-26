@@ -23,13 +23,22 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-application.env
+.env
 
-admin/db/
-admin/spec/admin/db/
-admin/bundle/
-admin/log/*.log
-admin/pkg/
-admin/spec/admin/log/*.log
-admin/spec/admin/storage/
-admin/spec/admin/tmp/
+api/db/
+api/spec/api/db/
+api/bundle/
+api/log/*.log
+api/pkg/
+api/spec/api/log/*.log
+api/spec/api/storage/
+api/spec/api/tmp/
+
+api_admin/db/
+api_admin/spec/api_admin/db/
+api_admin/bundle/
+api_admin/log/*.log
+api_admin/pkg/
+api_admin/spec/api_admin/log/*.log
+api_admin/spec/api_admin/storage/
+api_admin/spec/api_admin/tmp/

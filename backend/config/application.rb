@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Www
+module RailsEngineSample
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
@@ -28,5 +28,15 @@ module Www
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::Flash
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 :headers => :any,
+                 :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+                 :methods => [:get, :post, :options, :delete, :put]
+      end
+    end
   end
 end

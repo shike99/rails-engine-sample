@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-  # root to: ''
+  root to: 'home#index'
 
   namespace :admin do
     resources :users, only: :index
   end
 
-  mount Admin::Engine, at: '/api/admin'
+  namespace :api, defaults: { format: :json } do
+    mount Api::Engine, at: '/'
+    mount ApiAdmin::Engine, at: '/admin'
 
-  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-    registrations: 'api/auth/registrations',
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      registrations: 'api/auth/registrations'
+    }
+  end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

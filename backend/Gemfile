@@ -11,11 +11,12 @@ gem "rails", "~> 5.2.3"
 
 gem "devise"
 gem 'devise_token_auth'
-gem "omniauth"
-gem "omniauth-google-oauth2"
+# gem "omniauth"
+# gem "omniauth-google-oauth2"
 gem "pundit"
 gem "rack-cors"
 
+gem 'dotenv-rails'
 gem "jbuilder", "~> 2.5"
 gem "slim-rails"
 
@@ -74,4 +75,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "admin", path: "admin"
+gem 'api_admin', path: 'api_admin'
+
+gem 'api', path: 'api'
