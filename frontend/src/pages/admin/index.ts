@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Admin from '../views/Admin.vue'
+import Admin from './Admin.vue'
 import router from './router'
 import store from './store'
 

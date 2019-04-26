@@ -6,6 +6,7 @@ module.exports = {
     config.plugins.delete('prefetch')
   },
   pages: {
-    admin: 'src/admin/index.ts',
+    admin: 'src/pages/admin/index.ts',
+    home: 'src/pages/home/index.ts',
   },
 }
