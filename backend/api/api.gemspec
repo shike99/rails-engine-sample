@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pg"
   spec.add_development_dependency "devise"
   spec.add_development_dependency 'devise_token_auth'
+  spec.add_development_dependency 'jbuilder'
 end

@@ -75,6 +75,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'api_admin', path: 'api_admin'
-
 gem 'api', path: 'api'
+
+gem 'api_admin', path: 'api_admin'

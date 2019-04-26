@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
+    auth: {},
     articles: [],
   },
   getters: {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user): void {
       state.user = user
+    },
+    setAuth(state, auth): void {
+      state.auth = auth
     },
     setArticles(state, articles): void {
       state.articles = articles
