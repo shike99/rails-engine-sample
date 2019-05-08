@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import http from '@/plugins/http'
 
 Vue.use(Vuex)
 
@@ -23,11 +23,11 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchUsers({ commit }): Promise<void> {
-      const users = (await axios.get('/api/admin/users')).data
+      const users = (await http.get('/api/admin/users')).data
       commit('setUsers', users)
     },
     async fetchArticles({ commit }): Promise<void> {
-      const articles = (await axios.get('/api/admin/articles')).data
+      const articles = (await http.get('/api/admin/articles')).data
       commit('setArticles', articles)
     },
   },

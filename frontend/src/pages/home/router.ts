@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './Home.vue'
+import ArticleList from './ArticleList.vue'
 import ArticleDetail from './ArticleDetail.vue'
 import SignIn from './SignIn.vue'
 import SignUp from './SignUp.vue'
@@ -11,7 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Home,
+      name: 'home',
+      component: ArticleList,
     },
     // {
     //   path: '/users',
@@ -24,14 +25,17 @@ export default new Router({
     // },
     {
       path: '/articles/:id',
+      name: 'articleDetail',
       component: ArticleDetail,
     },
     {
       path: '/sign_in',
+      name: 'signIn',
       component: SignIn,
     },
     {
       path: '/sign_up',
+      name: 'signUp',
       component: SignUp,
     },
   ],

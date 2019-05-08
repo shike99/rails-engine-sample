@@ -330,7 +330,6 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
-  devise
   devise_token_auth
   dotenv-rails
   factory_bot_rails
