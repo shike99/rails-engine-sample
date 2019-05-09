@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class ApplicationController < ActionController::API
     include DeviseTokenAuth::Concerns::SetUserByToken
@@ -5,8 +7,8 @@ module Api
 
     protected
 
-    def skip_session
-      request.session_options[:skip] = true
-    end
+      def skip_session
+        request.session_options[:skip] = true
+      end
   end
 end

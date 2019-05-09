@@ -1,4 +1,6 @@
-require_dependency "api/application_controller"
+# frozen_string_literal: true
+
+require_dependency 'api/application_controller'
 
 module Api
   class Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
@@ -6,12 +8,12 @@ module Api
 
     private
 
-    def sign_up_params
-      params.permit(:name, :email, :password, :password_confirmation)
-    end
+      def sign_up_params
+        params.permit(:name, :email, :password, :password_confirmation)
+      end
 
-    def account_update_params
-      params.permit(:name, :nickname, :image, :email)
-    end
+      def account_update_params
+        params.permit(:name, :nickname, :image, :email)
+      end
   end
 end

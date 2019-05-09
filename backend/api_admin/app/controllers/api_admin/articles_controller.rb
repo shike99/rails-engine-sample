@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_dependency "api_admin/application_controller"
+require_dependency 'api_admin/application_controller'
 
 module ApiAdmin
   class ArticlesController < ApplicationController

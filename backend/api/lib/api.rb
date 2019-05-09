@@ -1,4 +1,6 @@
-require "api/engine"
+# frozen_string_literal: true
+
+require 'api/engine'
 
 module Api
   mattr_accessor :User, :Article

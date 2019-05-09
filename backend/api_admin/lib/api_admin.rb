@@ -1,4 +1,6 @@
-require "api_admin/engine"
+# frozen_string_literal: true
+
+require 'api_admin/engine'
 
 module ApiAdmin
   mattr_accessor :User, :Article
