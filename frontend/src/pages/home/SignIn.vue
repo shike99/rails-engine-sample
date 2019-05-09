@@ -1,7 +1,7 @@
 <template>
   <form @submit="handleSubmit">
-    <input type="email" label="Email" v-model="email" />
-    <input type="password" label="Password" v-model="password" />
+    <input type="email" v-model="email" />
+    <input type="password" v-model="password" />
     <input type="submit" value="submit" />
   </form>
 </template>
@@ -9,35 +9,39 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Cookies from 'js-cookie'
+import { AxiosResponse } from 'axios'
 import http from '@/plugins/http'
+import { Session, Auth } from '@/types/session'
+import { User } from '@/types/user'
 
 @Component
 export default class extends Vue {
   private email: string = ''
   private password: string = ''
 
-  handleSubmit(e) {
+  handleSubmit(e: Event) {
     e.preventDefault()
-    http.post('/api/auth/sign_in', { email: this.email, password: this.password }).then(response => {
+
+    const params = { email: this.email, password: this.password }
+    http.post('/api/auth/sign_in', params).then((response: AxiosResponse) => {
       const responseHeaders = response.headers
-      const authHeaders = {
+      const authHeaders: Auth = {
         'access-token': responseHeaders['access-token'],
-        client: responseHeaders['client'],
-        expiry: responseHeaders['expiry'],
-        uid: responseHeaders['uid'],
+        client: responseHeaders.client,
+        expiry: responseHeaders.expiry,
+        uid: responseHeaders.uid,
         'token-type': responseHeaders['token-type'],
       }
-      const user = response.data.data
+      const user: User = response.data.data
 
       this.$store.commit('setAuth', authHeaders)
       this.$store.commit('setUser', user)
 
-      const contents = {
+      const session: Session = {
         tokens: authHeaders,
         user,
       }
-
-      Cookies.set('session', JSON.stringify(contents), { expires: 14 })
+      Cookies.set('session', JSON.stringify(session), { expires: 14 })
 
       this.$router.push({ name: 'home' })
     })

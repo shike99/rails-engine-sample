@@ -1,15 +1,6 @@
-class Admin::UsersController < ApplicationController
-  # include Pundit
+# frozen_string_literal: true
 
-  # before_action :authenticate_user!
-  # before_action :authorize_admin
-
+class Admin::UsersController < Admin::ApplicationController
   def index
   end
-
-  # private
-
-  # def authorize_admin
-  #   authorize current_user, :is_admin?
-  # end
 end

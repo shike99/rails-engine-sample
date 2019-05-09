@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Article } from '@/types/article'
 
 @Component
 export default class extends Vue {
@@ -16,7 +17,12 @@ export default class extends Vue {
     this.$store.dispatch('fetchArticle', this.$route.params.id)
   }
 
-  get article() {
+  beforeRouteUpdate(to: any, from: any, next: any) {
+    this.$store.dispatch('fetchArticle', to.params.id)
+    next()
+  }
+
+  get article(): Article {
     return this.$store.getters.article
   }
 }

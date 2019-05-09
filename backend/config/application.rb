@@ -38,5 +38,10 @@ module RailsEngineSample
                  :methods => [:get, :post, :options, :delete, :put]
       end
     end
+
+    config.middleware.insert_before Rack::Runtime, Rack::Rewrite do
+      rewrite %r{\A/admin(/\w+)?}, '/admin'
+      rewrite %r{\A/(\w+)?}, '/', not: %r{\A/api(/\w+)?}
+    end
   end
 end

@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Article } from '@/types/article'
 
 @Component
 export default class extends Vue {
@@ -15,7 +16,7 @@ export default class extends Vue {
     this.$store.dispatch('fetchArticles')
   }
 
-  get articles() {
+  get articles(): Article[] {
     return this.$store.getters.articles
   }
 }
