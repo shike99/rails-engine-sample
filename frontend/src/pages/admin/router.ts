@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Admin from './Admin.vue'
-import UserList from './UserList.vue'
-import ArticleList from './ArticleList.vue'
+import Home from '@/components/admin/Home.vue'
+import Users from '@/containers/admin/Users.vue'
+import UserDetail from '@/components/admin/UserDetail.vue'
+import EditUser from '@/components/admin/EditUser.vue'
+import Articles from '@/containers/admin/Articles.vue'
+import NewArticle from '@/components/admin/NewArticle.vue'
+import EditArticle from '@/components/admin/EditArticle.vue'
 
 Vue.use(Router)
 
@@ -10,9 +14,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'admin',
-      component: Admin,
+      path: '/admin',
+      name: 'home',
+      component: Home,
     },
     // {
     //   path: '/users',
@@ -24,14 +28,34 @@ export default new Router({
     //   component: () => import('./UserList.vue'),
     // },
     {
-      path: '/users',
+      path: '/admin/users',
       name: 'users',
-      component: UserList,
+      component: Users,
     },
     {
-      path: '/articles',
+      path: '/admin/users/:id',
+      name: 'userDetail',
+      component: UserDetail,
+    },
+    {
+      path: '/admin/users/:id/edit',
+      name: 'editUser',
+      component: EditUser,
+    },
+    {
+      path: '/admin/articles',
       name: 'articles',
-      component: ArticleList,
+      component: Articles,
+    },
+    {
+      path: '/admin/articles/new',
+      name: 'newArticle',
+      component: NewArticle,
+    },
+    {
+      path: '/admin/articles/:id/edit',
+      name: 'editArticle',
+      component: EditArticle,
     },
   ],
 })

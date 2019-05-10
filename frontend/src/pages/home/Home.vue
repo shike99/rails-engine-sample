@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Article List</h1>
     <ul>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/sign_in">Sign In</router-link></li>

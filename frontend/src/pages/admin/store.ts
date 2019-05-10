@@ -6,14 +6,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: {},
     users: [],
     articles: [],
   },
   getters: {
+    user: state => state.user,
     users: state => state.users,
     articles: state => state.articles,
   },
   mutations: {
+    setUser(state, user): void {
+      state.user = user
+    },
     setUsers(state, users): void {
       state.users = users
     },

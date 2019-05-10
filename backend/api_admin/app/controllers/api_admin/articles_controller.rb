@@ -8,19 +8,19 @@ module ApiAdmin
 
     # GET /articles
     def index
-      @articles = ApiAdmin.Article.all
+      @articles = ApiAdmin::Article.all
 
-      render json: @articles
+      render file: '/api_admin/app/views/api_admin/articles/index'
     end
 
     # GET /articles/1
     def show
-      render json: @article
+      render file: '/api_admin/app/views/api_admin/articles/show'
     end
 
     # POST /articles
     def create
-      @article = ApiAdmin.Article.new(article_params)
+      @article = ApiAdmin::Article.new(article_params)
 
       if @article.save
         render json: @article, status: :created, location: @article
@@ -46,12 +46,12 @@ module ApiAdmin
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_article
-        @article = ApiAdmin.Article.find(params[:id])
+        @article = ApiAdmin::Article.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def article_params
-        params.fetch(:article, {})
+        params.require(:article).permit(:title, :text, :author_id)
       end
   end
 end

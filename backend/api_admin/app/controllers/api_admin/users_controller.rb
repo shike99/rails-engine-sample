@@ -8,7 +8,7 @@ module ApiAdmin
 
     # GET /users
     def index
-      @users = ApiAdmin.User.all
+      @users = ApiAdmin::User.all
 
       render json: @users
     end
@@ -20,7 +20,7 @@ module ApiAdmin
 
     # POST /users
     def create
-      @user = ApiAdmin.User.new(user_params)
+      @user = ApiAdmin::User.new(user_params)
 
       if @user.save
         render json: @user, status: :created, location: @user
@@ -46,12 +46,12 @@ module ApiAdmin
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_user
-        @user = ApiAdmin.User.find(params[:id])
+        @user = ApiAdmin::User.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def user_params
-        params.fetch(:user, {})
+        params.require(:user).permit(:name, :nickname, :image, :role)
       end
   end
 end

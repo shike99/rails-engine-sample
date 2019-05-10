@@ -1,24 +1,25 @@
 <template>
-  <ul>
-    <li v-for="user in users" :key="user.id">
-      <div>ID: {{ user.id }}</div>
-      <div>Name: {{ user.name }}</div>
-      <div>Email: {{ user.email }}</div>
-      <div>Role: {{ user.role }}</div>
-    </li>
-  </ul>
+  <div>
+    <user-list :users="users" />
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import UserList from '@/components/admin/UserList.vue'
+import { User } from '@/types/user'
 
-@Component
+@Component({
+  components: {
+    UserList,
+  },
+})
 export default class extends Vue {
   created(): void {
     this.$store.dispatch('fetchUsers')
   }
 
-  get users() {
+  get users(): User[] {
     return this.$store.getters.users
   }
 }
