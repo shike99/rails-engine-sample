@@ -2,6 +2,7 @@
   <form @submit="handleSubmit">
     <input type="email" v-model="email" />
     <input type="password" v-model="password" />
+    <input type="password" v-model="confirmPassword" />
     <input type="submit" value="submit" />
   </form>
 </template>
@@ -18,12 +19,17 @@ import { User } from '@/types/user'
 export default class extends Vue {
   private email: string = ''
   private password: string = ''
+  private confirmPassword: string = ''
 
   handleSubmit(e: Event) {
     e.preventDefault()
 
-    const params = { email: this.email, password: this.password }
-    http.post('/api/auth/sign_in', params).then((response: AxiosResponse) => {
+    const params = {
+      email: this.email,
+      password: this.password,
+      password_confirmation: this.confirmPassword,
+    }
+    http.post('/api/auth', params).then((response: AxiosResponse) => {
       const responseHeaders = response.headers
       const authHeaders: Auth = {
         'access-token': responseHeaders['access-token'],
@@ -34,7 +40,6 @@ export default class extends Vue {
       }
       const user: User = response.data.data
 
-      this.$store.commit('setAuth', authHeaders)
       this.$store.commit('setUser', user)
 
       const session: Session = {

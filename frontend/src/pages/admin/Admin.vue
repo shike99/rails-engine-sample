@@ -12,15 +12,17 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Cookies from 'js-cookie'
+import { verifyToken } from '@/plugins/auth'
 import { Session } from '@/types/session'
 
 @Component
 export default class extends Vue {
-  beforeCreate() {
-    const session = Cookies.get('session')
-    if (session) {
-      const sessionJson: Session = JSON.parse(session)
-      this.$store.commit('setUser', sessionJson.user)
+  async beforeCreate() {
+    const response = await verifyToken()
+    if (!response.success) {
+      this.$router.push({ name: 'sign-in', query: { redirect: this.$route.fullPath } })
+    } else {
+      this.$store.commit('setUser', response.data)
     }
   }
 }

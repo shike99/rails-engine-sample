@@ -3,7 +3,11 @@
     <input type="text" v-model="name" placeholder="name" />
     <input type="text" v-model="nickname" placeholder="nickname" />
     <input type="text" v-model="image" placeholder="image url" />
-    <select v-model="role" options="roleOptions" />
+    <select v-model="role">
+      <option v-for="roleOption in roleOptions" :key="roleOption.value" :value="roleOption.value">{{
+        roleOption.text
+      }}</option>
+    </select>
     <input type="submit" value="Update" />
   </form>
 </template>
@@ -43,7 +47,7 @@ export default class extends Vue {
   handleSubmit(e: Event): void {
     e.preventDefault()
 
-    const params = { name: this.name, nickname: this.nickname, image: this.image }
+    const params = { name: this.name, nickname: this.nickname, image: this.image, role: +this.role }
     http
       .patch(`/api/admin/users/${this.$route.params.id}`, params)
       .then(response => console.log(response.data))

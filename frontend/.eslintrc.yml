@@ -7,12 +7,8 @@ parserOptions:
   parser: '@typescript-eslint/parser'
 extends:
   - "plugin:vue/essential"
-  # - 'plugin:@typescript-eslint/recommended'
   - "@vue/prettier"
   - "@vue/typescript"
-  # - 'plugin:prettier/recommended'
-  # - 'prettier/@typescript-eslint'
-  # - 'prettier/vue'
 plugins:
   - 'prettier'
   - '@typescript-eslint'

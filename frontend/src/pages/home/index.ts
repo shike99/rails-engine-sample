@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Home from './Home.vue'
-import router from './router'
+import router from '@/router'
 import store from './store'
 import 'material-icons/iconfont/material-icons.css'
 

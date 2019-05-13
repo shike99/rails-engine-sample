@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '@/plugins/http'
-import { Auth } from '@/types/session'
 import { User } from '@/types/user'
 import { Article } from '@/types/article'
 
@@ -10,7 +9,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
-    auth: {},
     articles: [],
     article: {},
   },
@@ -22,9 +20,6 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user: User): void {
       state.user = user
-    },
-    setAuth(state, auth: Auth): void {
-      state.auth = auth
     },
     setArticles(state, articles): void {
       state.articles = articles
